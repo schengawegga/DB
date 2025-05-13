@@ -48,13 +48,13 @@ if (!defined('PATH_SEPARATOR')) {
  * Therefore, we'll assume the tests should use the version of
  * DB that has come from there as well.
  */
-if ('@include_path@' != '@'.'include_path'.'@') {
+/*if ('@include_path@' != '@'.'include_path'.'@') {
     ini_set('include_path', ini_get('include_path')
             . PATH_SEPARATOR . '.'
     );
-} else {
+} else {*/
     ini_set('include_path', realpath(dirname(__FILE__) . '/..')
             . PATH_SEPARATOR . '.' . PATH_SEPARATOR
             . ini_get('include_path')
     );
-}
+//}
