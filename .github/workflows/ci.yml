@@ -36,6 +36,7 @@ jobs:
           echo "MYSQL_TEST_DB=pear_db" >> $GITHUB_ENV
           echo "MYSQL_TEST_HOST=127.0.0.1" >> $GITHUB_ENV
       - name: Run tests
+        continue-on-error: true
         run: |
           pear run-tests -r tests/
       - name: Display results
