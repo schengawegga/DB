@@ -344,6 +344,9 @@ switch ($dbh->phptype) {
     case 'sqlite3':
         check_error($res, DB_ERROR_INVALID_NUMBER, false);
         break;
+    case 'mysqli' && PHP_VERSION_ID >= 70400:
+        check_error($res, DB_ERROR);
+        break;
     default:
         check_error($res, DB_ERROR_INVALID_NUMBER);
 }
@@ -450,6 +453,9 @@ switch ($dbh->phptype . ':' . $dbh->dbsyntax) {
     case 'sqlite3:sqlite':
         check_error($res, DB_ERROR_INVALID, false);
         break;
+    case 'mysqli:mysqli' && PHP_VERSION_ID >= 70400:
+        check_error($res, DB_ERROR);
+        break;
     case 'fbsql:fbsql':
         check_error($res, DB_ERROR_TRUNCATED);
         break;
@@ -471,6 +477,9 @@ switch ($dbh->phptype . ':' . $dbh->dbsyntax) {
     case 'sybase:sybase':
     case 'sqlite3:sqlite':
         check_error($res, DB_ERROR_INVALID, false);
+        break;
+    case 'mysqli:mysqli' && PHP_VERSION_ID >= 70400:
+        check_error($res, DB_ERROR);
         break;
     case 'fbsql:fbsql':
         check_error($res, DB_ERROR_TRUNCATED);
