@@ -38,3 +38,4 @@ jobs:
       - name: Run tests
         run: |
           pear run-tests -r tests/
+          for i in `find tests/ -name '*.out'`; do echo "$i"; cat "$i"; done
