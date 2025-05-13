@@ -339,7 +339,7 @@ print 'DB_ERROR_INVALID_NUMBER putting chars in INT column:  ';
 $res = $dbh->query("UPDATE phptest SET a = 'abc' WHERE a = 42");
 switch ($dbh->phptype) {
     case 'mysql':
-    case 'mysqli':
+    case 'mysqli' && PHP_VERSION_ID < 70400:
     case 'sqlite':
     case 'sqlite3':
         check_error($res, DB_ERROR_INVALID_NUMBER, false);
@@ -443,7 +443,7 @@ switch ($dbh->phptype . ':' . $dbh->dbsyntax) {
     case 'msql:msql':
     case 'mssql:mssql':
     case 'mysql:mysql':
-    case 'mysqli:mysqli':
+    case 'mysqli:mysqli' && PHP_VERSION_ID < 70400:
     case 'odbc:access':
     case 'sqlite:sqlite':
     case 'sybase:sybase':
@@ -465,7 +465,7 @@ switch ($dbh->phptype . ':' . $dbh->dbsyntax) {
     case 'msql:msql':
     case 'mssql:mssql':
     case 'mysql:mysql':
-    case 'mysqli:mysqli':
+    case 'mysqli:mysqli' && PHP_VERSION_ID < 70400:
     case 'odbc:access':
     case 'sqlite:sqlite':
     case 'sybase:sybase':
