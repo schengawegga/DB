@@ -30,4 +30,4 @@ jobs:
           mysql -e 'CREATE DATABASE pear_db;' -uroot -proot
       - name: Run tests
         run: |
-          pear run-tests -d tests/
+          pear run-tests -r tests/
