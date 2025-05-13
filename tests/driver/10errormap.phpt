@@ -4,7 +4,6 @@ DB_driver::error mapping
 <?php require_once dirname(__FILE__) . '/skipif.inc'; ?>
 --FILE--
 <?php
-error_reporting(E_ALL & ~E_NOTICE);
 require_once dirname(__FILE__) . '/mktable.inc';
 require_once dirname(__FILE__) . '/../errors.inc';
 ?>
