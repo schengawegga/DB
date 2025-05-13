@@ -36,9 +36,9 @@ jobs:
           echo "MYSQL_TEST_DB=pear_db" >> $GITHUB_ENV
           echo "MYSQL_TEST_HOST=127.0.0.1" >> $GITHUB_ENV
       - name: Run tests
-        continue-on-error: true
-        run: |
-          pear run-tests -r tests/
-      - name: Display results
-        run: |
-          for i in `find tests/ -name '*.out'`; do echo "$i"; cat "$i"; done
+        uses: gacts/run-and-post-run@v1
+        with:
+          run: |
+            pear run-tests -r tests/
+          post: |
+            for i in `find tests/ -name '*.out'`; do echo "$i"; cat "$i"; done
