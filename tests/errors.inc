@@ -258,7 +258,7 @@ $res = $dbh->query("INSERT INTO peartestnull VALUES ('one')");
 $res = $dbh->query("UPDATE peartestnull SET a = NULL WHERE a = 'one'");
 switch ($dbh->phptype) {
     case 'mysql':
-    case 'mysqli':
+    case 'mysqli' && PHP_VERSION_ID < 70400:
         check_error($res, DB_ERROR_CONSTRAINT_NOT_NULL, false);
         break;
     default:
