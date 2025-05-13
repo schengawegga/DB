@@ -5,8 +5,7 @@ DB::DB_Error
 --FILE--
 <?php // -*- C++ -*-
 require_once dirname(__FILE__) . '/include.inc';
-set_include_path(realpath(__DIR__ . "/../") . PATH_SEPARATOR . get_include_path());
-require_once realpath(__DIR__ . "/../DB.php");
+require_once 'DB.php';
 
 function test_error_handler($errno, $errmsg, $file, $line, $vars=null) {
     if (defined('E_STRICT')) {
