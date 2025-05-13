@@ -1001,9 +1001,14 @@ class DB_Error extends PEAR_Error
         if ($method == 'DB_Error') {
             return call_user_func_array(array($this, '__construct'), $arguments);
         }
-        trigger_error(
-            'Call to undefined method DB_Error::' . $method . '()', E_USER_ERROR
-        );
+
+        if(PHP_VERSION_ID < 80400) {
+            trigger_error(
+                'Call to undefined method DB_Error::' . $method . '()', E_USER_ERROR
+            );
+        } else {
+            throw new RuntimeException('Call to undefined method DB_Error::' . $method . '()');
+        }
     }
     // }}}
 }
