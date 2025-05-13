@@ -29,7 +29,9 @@ jobs:
         run: |
           sudo systemctl start mysql.service
           mysql -e 'CREATE DATABASE pear_db;' -uroot -proot
-          mysql -v
+      - name: Get MySQL Version
+        run: |
+          mysqld --version
       - name: Set env
         run: |
           echo "MYSQL_TEST_USER=root" >> $GITHUB_ENV
