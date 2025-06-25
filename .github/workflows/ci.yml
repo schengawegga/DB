@@ -33,11 +33,16 @@ jobs:
         run: |
           mysqld --version
       - name: Set env
+        env:
+          MYSQL_TEST_USER: 'root'
+          MYSQL_TEST_PASSWD: 'root'
+          MYSQL_TEST_DB: 'pear_db'
+          MYSQL_TEST_HOST: '127.0.0.1'
         run: |
-          echo "MYSQL_TEST_USER=root" >> $GITHUB_ENV
-          echo "MYSQL_TEST_PASSWD=root" >> $GITHUB_ENV
-          echo "MYSQL_TEST_DB=pear_db" >> $GITHUB_ENV
-          echo "MYSQL_TEST_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "MYSQL_TEST_USER=root"
+          echo "MYSQL_TEST_PASSWD=root"
+          echo "MYSQL_TEST_DB=pear_db"
+          echo "MYSQL_TEST_HOST=127.0.0.1"
       - name: Run tests
         uses: gacts/run-and-post-run@v1
         with:
