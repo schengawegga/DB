@@ -106,7 +106,7 @@ $dsns = array(
     // 'sybase'   => 'sybase://sa@somehost/pubs',
 
     // 'mysql'    => 'mysql://root@localhost/test',
-    'mysqli'   => 'mysqli://root@localhost/pear_db', // $_ENV overrides if set.
+    // 'mysqli'   => 'mysqli://root@localhost/test', // $_ENV overrides if set.
     // 'oci8'     => 'oci8://system:manager@',
     // 'access'   => 'odbc(access)://admin@/SystemDsnName',
     // 'db2'      => 'odbc(db2)://db2inst1:XXXX@/SAMPLE',
