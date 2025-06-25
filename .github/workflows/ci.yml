@@ -26,12 +26,4 @@ jobs:
           php-version: ${{ matrix.php-version }}
           ini-values: include_path=.:/usr/share/php:pear/usr/share/php
           tools: none
-      - name: Set up MySQL
-        env:
-          DATABASE_YML: ".github/includes/${{ matrix.database }}.yml"
-        uses: ${{ env.DATABASE_YML }}
-        with:
-          run: |
-            pear run-tests -r tests/
-          post: |
-            for i in `find tests/ -name '*.out'`; do echo "$i"; cat "$i"; done
+      - uses: '.github/includes/mysql.yml'
