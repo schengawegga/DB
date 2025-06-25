@@ -1,0 +1,13 @@
+  run: |
+    sudo systemctl start mysql.service
+    mysql -e 'CREATE DATABASE pear_db;' -uroot -proot
+- name: Get MySQL Version
+  run: |
+    mysqld --version
+- name: Run tests
+  uses: gacts/run-and-post-run@v1
+  env:
+    MYSQL_TEST_USER: 'root'
+    MYSQL_TEST_PASSWD: 'root'
+    MYSQL_TEST_DB: 'pear_db'
+    MYSQL_TEST_HOST: '127.0.0.1'
