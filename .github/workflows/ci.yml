@@ -26,4 +26,4 @@ jobs:
           php-version: ${{ matrix.php-version }}
           ini-values: include_path=.:/usr/share/php:pear/usr/share/php
           tools: none
-      - uses: '.github/includes/mysql.yml'
+      - uses: './DB/.github/includes/mysql.yml'
