@@ -43,3 +43,7 @@ $dbh = DB::connect($dsn, $options);
 if (DB::isError($dbh)) {
     die('connect.inc: ' . $dbh->toString());
 }
+
+if ($dbms == 'mysql' || $dbms == 'mysql') {
+    $dbh->query("SET CHARACTER SET ?", array('utf-8'));
+}
