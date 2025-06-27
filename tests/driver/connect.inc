@@ -44,6 +44,6 @@ if (DB::isError($dbh)) {
     die('connect.inc: ' . $dbh->toString());
 }
 
-if ($dbms == 'mysql' || $dbms == 'mysql') {
+if ($dbms == 'mysql' || $dbms == 'mysqli') {
     $dbh->query("SET CHARACTER SET ?", array('utf-8'));
 }
