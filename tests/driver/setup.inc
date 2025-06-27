@@ -116,7 +116,7 @@ $dsns = array(
 );
 
 if (getenv('MYSQL_TEST_USER')) {
-    if(version_compare(PHP_VERSION, '7.2.0', '<')) {
+    /*if(version_compare(PHP_VERSION, '7.2.0', '<')) {
         $dsns['mysql'] = array(
             'phptype' => 'mysql',
             'username' => getenv('MYSQL_TEST_USER'),
@@ -132,7 +132,7 @@ if (getenv('MYSQL_TEST_USER')) {
             'socket' => getenv('MYSQL_TEST_SOCKET') == ''
                 ? null : getenv('MYSQL_TEST_SOCKET'),
         );
-    } else {
+    } else {*/
         $dsns['mysqli'] = array(
             'phptype' => 'mysqli',
             'username' => getenv('MYSQL_TEST_USER'),
@@ -148,5 +148,5 @@ if (getenv('MYSQL_TEST_USER')) {
             'socket' => getenv('MYSQL_TEST_SOCKET') == ''
                 ? null : getenv('MYSQL_TEST_SOCKET'),
         );
-    }
+    //}
 }

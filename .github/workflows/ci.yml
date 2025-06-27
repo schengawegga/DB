@@ -23,6 +23,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
+          extensions: mysql, mysqli
           ini-values: include_path=.:/usr/share/php:pear/usr/share/php
           tools: none
       - name: Set up MySQL
