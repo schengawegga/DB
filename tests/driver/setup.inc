@@ -116,19 +116,37 @@ $dsns = array(
 );
 
 if (getenv('MYSQL_TEST_USER')) {
-    $dsns['mysqli'] = array(
-        'phptype' => 'mysqli',
-        'username' => getenv('MYSQL_TEST_USER'),
-        'password' => getenv('MYSQL_TEST_PASSWD'),
-        'database' => getenv('MYSQL_TEST_DB'),
+    if(version_compare(PHP_VERSION, '7.2.0', '<')) {
+        $dsns['mysql'] = array(
+            'phptype' => 'mysql',
+            'username' => getenv('MYSQL_TEST_USER'),
+            'password' => getenv('MYSQL_TEST_PASSWD'),
+            'database' => getenv('MYSQL_TEST_DB'),
 
-        'hostspec' => getenv('MYSQL_TEST_HOST') == ''
-            ? null : getenv('MYSQL_TEST_HOST'),
+            'hostspec' => getenv('MYSQL_TEST_HOST') == ''
+                ? null : getenv('MYSQL_TEST_HOST'),
 
-        'port' => getenv('MYSQL_TEST_PORT') == ''
-            ? null : getenv('MYSQL_TEST_PORT'),
+            'port' => getenv('MYSQL_TEST_PORT') == ''
+                ? null : getenv('MYSQL_TEST_PORT'),
 
-        'socket' => getenv('MYSQL_TEST_SOCKET') == ''
-            ? null : getenv('MYSQL_TEST_SOCKET'),
-    );
+            'socket' => getenv('MYSQL_TEST_SOCKET') == ''
+                ? null : getenv('MYSQL_TEST_SOCKET'),
+        );
+    } else {
+        $dsns['mysqli'] = array(
+            'phptype' => 'mysqli',
+            'username' => getenv('MYSQL_TEST_USER'),
+            'password' => getenv('MYSQL_TEST_PASSWD'),
+            'database' => getenv('MYSQL_TEST_DB'),
+
+            'hostspec' => getenv('MYSQL_TEST_HOST') == ''
+                ? null : getenv('MYSQL_TEST_HOST'),
+
+            'port' => getenv('MYSQL_TEST_PORT') == ''
+                ? null : getenv('MYSQL_TEST_PORT'),
+
+            'socket' => getenv('MYSQL_TEST_SOCKET') == ''
+                ? null : getenv('MYSQL_TEST_SOCKET'),
+        );
+    }
 }
