@@ -30,6 +30,7 @@ function test_error_handler($errno, $errmsg, $file, $line, $vars=null) {
         E_USER_WARNING => 'User Warning',
         E_USER_NOTICE => 'User Notice',
         E_STRICT => 'Strict Notice',
+        E_DEPRECATED => 'Deprecated',
     );
     $prefix = $errortype[$errno];
     print "\n$prefix: $errmsg in " . basename($file) . " on line XXX\n";

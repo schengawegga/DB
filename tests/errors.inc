@@ -258,7 +258,7 @@ $res = $dbh->query("INSERT INTO peartestnull VALUES ('one')");
 $res = $dbh->query("UPDATE peartestnull SET a = NULL WHERE a = 'one'");
 switch ($dbh->phptype) {
     case 'mysql':
-    case 'mysqli':
+    case 'mysqli' && PHP_VERSION_ID < 70400:
         check_error($res, DB_ERROR_CONSTRAINT_NOT_NULL, false);
         break;
     default:
@@ -339,10 +339,13 @@ print 'DB_ERROR_INVALID_NUMBER putting chars in INT column:  ';
 $res = $dbh->query("UPDATE phptest SET a = 'abc' WHERE a = 42");
 switch ($dbh->phptype) {
     case 'mysql':
-    case 'mysqli':
+    case 'mysqli' && PHP_VERSION_ID < 70400:
     case 'sqlite':
     case 'sqlite3':
         check_error($res, DB_ERROR_INVALID_NUMBER, false);
+        break;
+    case 'mysqli' && PHP_VERSION_ID >= 70400:
+        check_error($res, DB_ERROR);
         break;
     default:
         check_error($res, DB_ERROR_INVALID_NUMBER);
@@ -443,12 +446,15 @@ switch ($dbh->phptype . ':' . $dbh->dbsyntax) {
     case 'msql:msql':
     case 'mssql:mssql':
     case 'mysql:mysql':
-    case 'mysqli:mysqli':
+    case 'mysqli:mysqli' && PHP_VERSION_ID < 70400:
     case 'odbc:access':
     case 'sqlite:sqlite':
     case 'sybase:sybase':
     case 'sqlite3:sqlite':
         check_error($res, DB_ERROR_INVALID, false);
+        break;
+    case 'mysqli:mysqli' && PHP_VERSION_ID >= 70400:
+        check_error($res, DB_ERROR);
         break;
     case 'fbsql:fbsql':
         check_error($res, DB_ERROR_TRUNCATED);
@@ -465,12 +471,15 @@ switch ($dbh->phptype . ':' . $dbh->dbsyntax) {
     case 'msql:msql':
     case 'mssql:mssql':
     case 'mysql:mysql':
-    case 'mysqli:mysqli':
+    case 'mysqli:mysqli' && PHP_VERSION_ID < 70400:
     case 'odbc:access':
     case 'sqlite:sqlite':
     case 'sybase:sybase':
     case 'sqlite3:sqlite':
         check_error($res, DB_ERROR_INVALID, false);
+        break;
+    case 'mysqli:mysqli' && PHP_VERSION_ID >= 70400:
+        check_error($res, DB_ERROR);
         break;
     case 'fbsql:fbsql':
         check_error($res, DB_ERROR_TRUNCATED);

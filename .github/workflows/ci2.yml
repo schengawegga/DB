@@ -1,0 +1,48 @@
+---
+name: CI2
+
+on:
+  push:
+    branches:
+      - trunk
+  pull_request:
+    branches:
+      - trunk
+
+jobs:
+  test:
+    continue-on-error: true
+    #runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        php-version: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mysql, mysqli
+          ini-values: include_path=.:/usr/share/php:pear/usr/share/php
+          tools: none
+      - name: Set up MySQL
+        run: |
+          sudo systemctl start mysql.service
+          mysql -e 'CREATE DATABASE pear_db;' -uroot -proot
+      - name: Get MySQL Version
+        run: |
+          mysqld --version
+      - name: Run tests
+        uses: gacts/run-and-post-run@v1
+        env:
+          MYSQL_TEST_USER: 'root'
+          MYSQL_TEST_PASSWD: 'root'
+          MYSQL_TEST_DB: 'pear_db'
+          MYSQL_TEST_HOST: '127.0.0.1'
+        with:
+          run: |
+            pear run-tests -r tests/
+          post: |
+            for i in `find tests/ -name '*.out'`; do echo "$i"; cat "$i"; done
