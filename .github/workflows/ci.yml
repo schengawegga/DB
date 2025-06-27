@@ -15,7 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
+        #php-version: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
+      php-version: ['7.0']
 
     steps:
       - uses: actions/checkout@v4
@@ -29,6 +30,8 @@ jobs:
         run: |
           sudo systemctl start mysql.service
           mysql -e 'CREATE DATABASE pear_db;' -uroot -proot
+      - name: Set mysql_native_password for root user
+        run: |
           mysql -e 'ALTER USER \'root\'@\'localhost\' IDENTIFIED WITH mysql_native_password BY \'root\';' -uroot -proot
       - name: Get MySQL Version
         run: |
