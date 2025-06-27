@@ -29,6 +29,7 @@ jobs:
         run: |
           sudo systemctl start mysql.service
           mysql -e 'CREATE DATABASE pear_db;' -uroot -proot
+          mysql -e 'ALTER USER \'root\'@\'localhost\' IDENTIFIED WITH mysql_native_password BY \'root\';' -uroot -proot
       - name: Get MySQL Version
         run: |
           mysqld --version

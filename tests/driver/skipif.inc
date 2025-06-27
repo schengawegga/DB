@@ -23,7 +23,7 @@
 /**
  * Establish the include_path, DSN's and connection $options
  */
-require_once dirname(__FILE__) . '/setup.inc';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'setup.inc';
 
 if (empty($dsns)) {
     die('skip At least one element of $dsns must be defined in setup.inc');
