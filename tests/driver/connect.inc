@@ -45,5 +45,5 @@ if (DB::isError($dbh)) {
 }
 
 if ($dbms == 'mysql' || $dbms == 'mysqli') {
-    $dbh->query("SET CHARACTER SET ?", array('utf-8'));
+    $dbh->query("SET CHARACTER SET ?", array('utf8'));
 }
